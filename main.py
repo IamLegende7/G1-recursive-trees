@@ -66,7 +66,7 @@ def node(startx: float, starty: float, generation: int, child_num: int, children
   if generation < max_generations:
     ## Get child count
     if generation == 0:
-      children_count = initial_children_count # = 2
+      children_count = initial_children_count
     else:
       children_count = children_count_parent
 
@@ -74,8 +74,8 @@ def node(startx: float, starty: float, generation: int, child_num: int, children
     for i in range(children_count):
       node(endx, endy, generation+1, i+1, children_count, rotation=alpha)
 
-# Generating & Writing Tree
-node(width / 2, 0, 0, 1, 1)
+# Generating Tree
+node(startx=(width / 2), starty=0, generation=0, child_num=1, children_count_parent=1)
 
 # Cleanup
 svg_writer.close()
