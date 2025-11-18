@@ -1,15 +1,21 @@
 # Erklärung des .svg Formats
 
 **s** = scaleable
+
 **v** = vector
+
 **g** = grafic
 
 ## Funktion
+
 Punkte können Kommazahlen sein,
+
 Bild wird an Pfaden je nach Auflösung generiert
 
 ## Vorteile
+
 nur xml (text)    ->  einfach zu generieren
+
 vector basiert    ->  Scallierung egal
 
 ## Nutzung / Beispiele
