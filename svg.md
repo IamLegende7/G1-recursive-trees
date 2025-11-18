@@ -27,7 +27,7 @@ vector basiert    ->  Scallierung egal
 ```XML
 <line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}" />
 ```
-### Recheck:
+### Rechteck:
 ```XML
 <rect width="{width}" height="{height}" fill="{colour}" />
 ```
