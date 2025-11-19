@@ -10,7 +10,7 @@ import math
 ```
 
 * importieren von math --> sinus, cosinus & ceil (aufrunden)
-* importieren von svg.py (siehe [hier](https://github.com/IamLegende7/G1-recursive-trees/blob/main/svg.md))
+* importieren von svg.py (siehe [hier](docs/svg.md))
 
 ```python
 debug = False # Debug infos
