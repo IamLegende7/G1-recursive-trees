@@ -10,13 +10,13 @@ width = 1000
 
 # Size
 initial_size = 200
-dropoff = 1.5
+dropoff = 2
+line_width = 20
 exponential_dropoff = True
 
 # Generations & Children
-max_generations = 15
-children_count = 2
-line_width = 4
+max_generations = 5
+children_count = 3
 
 # Spread
 spread = 45
@@ -47,7 +47,7 @@ def node(startx, starty, generation, alpha, length):
   endy = starty + y_offset
 
   ## Drawing
-  drawLine(startx,starty,endx,endy,(line_width / (generation + 1)))
+  drawLine(startx,starty,endx,endy,new_length/line_width)
 
   if generation > max_generations: return
 
