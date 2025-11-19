@@ -1,7 +1,7 @@
-from svg import SVGWriter
 import math
 
 debug = False
+file = 'image.svg'
 
 ## SETTINGS ##
 # Board
@@ -18,18 +18,19 @@ initial_children_count = 2
 line_width = 4
 
 # Spread
-spread = 90
+spread = 45
 spread_dropoff = 1
 do_spread_dropoff = False
-keep_rotation = False
+keep_rotation = True
 
 
+def toFile(contents):
+    try: 
+      with open(file, 'a') as f: f.write(contents + "\n")
+    except: 
+      print("Error writing to svg file!")
 
-# Init
-svg_writer = SVGWriter('image.svg')
-svg_writer.write(svg_writer.rect(width, height, "#FFFFFF"))
-
-def node(startx: float, starty: float, generation: int, child_num: int, children_count_parent: int, rotation = None):
+def node(startx, starty, generation, child_num, children_count_parent, rotation = None):
   
   ## Mathe
   child_multi = child_num - math.ceil(children_count_parent / 2)
@@ -61,7 +62,8 @@ def node(startx: float, starty: float, generation: int, child_num: int, children
 
 
   ## Drawing
-  svg_writer.write(svg_writer.line(startx, starty, endx, endy, (line_width / (generation + 1)), "#000000"))
+  drawLine(startx,starty,endx,endy,(line_width / (generation + 1)))
+  #svg_writer.write(svg_writer.line(startx, starty, endx, endy, (line_width / (generation + 1)), "#000000"))
 
   if generation < max_generations:
     ## Get child count
@@ -74,8 +76,24 @@ def node(startx: float, starty: float, generation: int, child_num: int, children
     for i in range(children_count):
       node(endx, endy, generation+1, i+1, children_count, rotation=alpha)
 
+def drawLine(x1,y1,x2,y2,width):
+  toFile(f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="#000000" stroke-width="{str(width)}" />')
+
+def initFile(filename):
+  open(filename, 'w').close()
+  toFile('<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">')
+  toFile(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
+  
+initFile(file)
+
+
+
+
+
+
 # Generating Tree
 node(startx=(width / 2), starty=0, generation=0, child_num=1, children_count_parent=1)
 
 # Cleanup
-svg_writer.close()
+toFile('</svg>')
+print("done stuff")
