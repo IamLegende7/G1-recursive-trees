@@ -44,12 +44,13 @@ def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: 
     to_file(line_str)
 
 def draw_rect(width: float, height: float, colour: str, x: float = 0, y: float = 0, border_colour: str = None, border_width: str = None):
-  #if border_colour is None:
+  if colour is None: rect_fill_colour = ''
+  else: rect_fill_colour = 'fill="{colour}" '
   rect_str_start = f'<rect '
-  rect_str_required = f'x="{str(x)}" y="{str(y)}" width="{str(width)}" height="{str(height)}" fill="{colour}" '
+  rect_str_required = f'x="{str(x)}" y="{str(y)}" width="{str(width)}" height="{str(height)}" '
   rect_str_end = '/>'
 
-  rect_str = rect_str_start + rect_str_required + rect_str_end
+  rect_str = rect_str_start + rect_str_required + rect_fill_colour + rect_str_end
   to_file(rect_str)
 
 ## NODES ##
