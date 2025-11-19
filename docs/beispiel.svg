@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>                              <!-- xml header -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000"> <!-- svg header -->
+    <line x1="0" y1="0" x2="1000" y2="1000" stroke="#FF00FF" stroke-width="7" /> <!-- Pinke Linie -->
+    
     <rect x="10" y="10" width="30" height="50" fill="#FFFFFF" /> <!-- Weißes Rechteck -->
     
     <g transform="rotate(45,500,500)"> <!-- Drehen -->

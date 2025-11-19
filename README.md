@@ -64,7 +64,7 @@ Argumente:
 
 ### Mathe
 
-![](assets/bild_dreieck.png)
+![skizze_mathe](assets/bild_dreieck.png)
 
 (Schlecht formatiert, ich weiß)
 
