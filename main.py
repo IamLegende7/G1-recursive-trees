@@ -23,13 +23,23 @@ spread = 45
 keep_rotation = True
 exponential_length = False
 
+## SVG STUFF ##
+def init_file(filename):
+  open(filename, 'w').close()
+  toFile('<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">')
+  toFile(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
 
-def toFile(contents):
+def to_file(contents: str):
     try: 
       with open(file, 'a') as f: f.write(contents + "\n")
     except: 
       print("Error writing to svg file!")
 
+def draw_line(self, x1: float, y1: float, x2: float, y2: float, width: float, colour: str):
+    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
+    to_file(line_str)
+
+## NODES ##
 def node(startx, starty, generation, alpha, length):
   
   if exponential_dropoff: new_length = length / dropoff
@@ -48,6 +58,7 @@ def node(startx, starty, generation, alpha, length):
 
   ## Drawing
   drawLine(startx,starty,endx,endy,new_length/line_width)
+  draw_line(startx,starty,endx,endy,(line_width / (generation + 1)))
 
   if generation > max_generations: return
 
@@ -56,24 +67,13 @@ def node(startx, starty, generation, alpha, length):
     cur_rot = (i+0.5) * dist + alpha - 90
     node(endx, endy, generation+1, cur_rot, new_length)
 
-def drawLine(x1,y1,x2,y2,width):
-  toFile(f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="#000000" stroke-width="{str(width)}" />')
 
-def initFile(filename):
-  open(filename, 'w').close()
-  toFile('<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">')
-  toFile(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
-  
-initFile(file)
+## INIT ##
+init_file(file)
 
-
-
-
-
-
-# Generating Tree
+## GENERATING TREE ##
 node((width / 2), 0, 0, 0, initial_size*2)
 
-# Cleanup
+## CLEANUP ##
 toFile('</svg>')
 print("done stuff")
