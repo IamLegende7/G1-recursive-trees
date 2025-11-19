@@ -4,8 +4,9 @@ debug = True
 file = 'image.svg'
 
 ## SETTINGS ##
-# Mode
-mode = "line"
+# General shape
+# Valid modes: line, quad
+mode = "quad"
 
 # Board
 height = 1000
@@ -17,7 +18,7 @@ dropoff = 1.5
 exponential_dropoff = True
 
 # Generations & Children
-max_generations = 15
+max_generations = 5
 children_count = 2
 line_width = 4
 
@@ -38,9 +39,18 @@ def to_file(contents: str):
     except: 
       print("Error writing to svg file!")
 
-def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: str = "#000000"):
+def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: str):
     line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
     to_file(line_str)
+
+def draw_rect(width: float, height: float, colour: str, x: float = 0, y: float = 0, border_colour: str = None, border_width: str = None):
+  #if border_colour is None:
+  rect_str_start = f'<rect '
+  rect_str_required = f'x="{str(x)}" y="{str(y)}" width="{str(width)}" height="{str(height)}" fill="{colour}" '
+  rect_str_end = '/>'
+
+  rect_str = rect_str_start + rect_str_required + rect_str_end
+  to_file(rect_str)
 
 ## NODES ##
 def node(startx, starty, generation, alpha, length):
@@ -61,7 +71,9 @@ def node(startx, starty, generation, alpha, length):
 
   ## Drawing
   if mode == "line":
-    draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)), colour="#000000")
+    draw_line(startx, starty, endx, endy, (line_width / (generation + 1)))
+  elif mode == "quad":
+    draw_rect(x=startx, y=starty, width=endx, height=endy, colour=None, border_colour="#000000", border_width=4)
 
   if generation > max_generations: return
 
