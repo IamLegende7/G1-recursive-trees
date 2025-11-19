@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>                              <!-- xml header -->
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000"> <!-- svg header -->
+    <rect x="10" y="10" width="30" height="50" fill="#FFFFFF" /> <!-- Weißes Rechteck -->
+    
     <g transform="rotate(45,500,500)"> <!-- Drehen -->
-        <rect x="450" y="450" width="100" height="100" fill="#00FF00" /> <!-- Rechteck -->
+        <rect x="450" y="450" width="100" height="100" fill="#00FF00" /> <!-- Grünes Rechteck -->
     </g> <!-- Drehen footer -->
 </svg> <!-- svg footer -->

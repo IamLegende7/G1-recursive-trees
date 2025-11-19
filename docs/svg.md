@@ -78,3 +78,18 @@ svg_footer = '</svg>'
 
 to_file(svg_footer)
 ```
+
+## Beispiel
+
+Das Folgende Beispiel kann in [beispiel.svg](beispiel.svg) und als Text in [beispiel.xml](beispiel.xml) angezeigt werden.
+
+Ein grünes Rechteck mit w,h=100, mit der linken, oberen Ecke bei 450|450 (also mitte rechteck = mitte svg).  
+Dieses drehen wir dann um 45° um 500|500
+
+```xml
+<!-- svg & xml header here-->
+    <g transform="rotate(45,500,500)"> <!-- Drehen -->
+        <rect x="450" y="450" width="100" height="100" fill="#00FF00" /> <!-- Rechteck -->
+    </g> <!-- Drehen footer -->
+<!-- svg footer here-->
+```
