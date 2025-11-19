@@ -4,7 +4,7 @@ debug = True
 file = 'image.svg'
 
 ## SETTINGS ##
-# Mode
+# General
 mode = "line"
 
 # Board
@@ -14,9 +14,8 @@ width = 1600
 # Size
 initial_size = 200
 dropoff = 1.38
-line_width = 20
+line_width = 1/20
 exponential_dropoff = True
-width_factor = 1/20
 
 # Generations & Children
 max_generations = 10
@@ -57,7 +56,7 @@ def node(startx, starty, generation, alpha, length):
 
   ## Drawing
   if mode == "line":
-    draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)), colour="#000000")
+    draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(new_length * line_width), colour="#000000")
 
   if generation > max_generations: return
 

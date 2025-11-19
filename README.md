@@ -13,12 +13,18 @@ Dafür müsst ihr nur das Programm runterladen und die konstanten Variablen in d
 *Note*: Nur ein kurzer Überblick!  
 *Note*: Einige Erklärungen machen möglicheweise keinen Sinn, wenn ihr das Programm nicht versteht
 
-| Einstellung | mögliche Werte | Erklärung                              |
-| :---------- | :------------- | :--------                              |
-| ```mode```  | "line", "quad" | Die Formen, die erstellt werden sollen |
-| **Board**
-| ```heigth```| any pos. float | the heigth of the SVG
-| ```width``` | any pos. float | the width of the SVG
+| Einstellung        | mögliche Werte | Erklärung                              |
+| :----------------- | :------------- | :------------------------------------- |
+| **General**                                                                  |
+| ```mode```         | "line", "quad" | Die Formen, die erstellt werden sollen |
+| **Board**                                                                    |
+| ```heigth```       | any pos. float | Die Höhe des SVGs                      |
+| ```width```        | any pos. float | Die Breite des SVGs                    |
+| **Size**                                                                     |
+| ```initial_size``` | any pos. float | die Größe der ersten Generation        |
+| ```dropoff```      | any float      | wie schnell die Größe & Linienbreite sich verändert |
+| ```exponential_dropoff``` | bool | ob die Größe exponentiell kleiner werden soll |
+| ```line_width```   | any pos. float | die Linienbreite, abhänging von der Länge |
 
 
 ## Kurzer Überblick des Programmes
