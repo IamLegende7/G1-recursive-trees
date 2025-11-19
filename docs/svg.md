@@ -62,6 +62,8 @@ SVG unterstüzt auch noch andere Formen:
 
 ## Umsetzung im Projekt
 
+*Note*: Dies bezieht sich auf eine alte Version von ```main.py```. Für die neuere Umsetzung siehe [hier](../README.md#svg-zeugs).
+
 ### Setzen des Headers:
 ```python
 def init_file(filename):

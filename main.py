@@ -71,7 +71,7 @@ def draw_rect(width: float, height: float,                               # Nöti
   ## Drehungs Header ##
   if rotx is None: rotx = x # Wenn nicht gesetzt: setze auf x, bzw. y
   if roty is None: roty = y
-  if rotation != 0: rect_parts.append(f'<g transform="rotate({rotation}, {rotx}, {roty})">')
+  if rotation != 0: rect_parts.append(f'<g transform="rotate({rotation}, {rotx}, {roty})">\n')
 
   ## Nötiges ##
   rect_parts.append(f'<rect')
@@ -88,11 +88,11 @@ def draw_rect(width: float, height: float,                               # Nöti
   ## Rect Ende ##
   rect_parts.append('/>')
 
-  ## Drehung Ende ##
-  if rotation != 0: rect_parts.append('</g>')
-
   ## Kommentar ##
   if not (comment is None): rect_parts.append(f'<!-- {comment} -->')
+
+  ## Drehung Ende ##
+  if rotation != 0: rect_parts.append('\n</g>')
 
   # Alle in rect_str zusammenfügen
   rect_str = ""

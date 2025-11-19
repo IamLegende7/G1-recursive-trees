@@ -12,6 +12,13 @@ Dafür müsst ihr nur das Programm runterladen und die konstanten Variablen in d
 
 Dieses Programm macht viel mit dem SVG Standart. Mehr zu wie es das macht und eine kleine Übersicht [hier](docs/svg.md).
 
+Eine kleine liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schreckliches Deutsch-Englisch Gemisch)
+ - **Node**: so werden oft die verschiedenen knotenpunkte einer rekursiven Strucktur genannt. In userem Programm zeichnet aber jede node außerdem eine "Figur"
+ - **Figur**: die einfache Form, die rekursiv gezeichnet wird. [Hier](assets/title_image.png) ist die Figur eine Line. Sie kann aber auch ein Dreieck oder Quadrad (oder jegliche andere Form) sein
+ - **Parent**: eine Parent Node, ist einfach die Node, die die Child Node hervorgerufen hat. Könnt ihr euch so ähnlich wie beim Stammbaum vorstellen.
+ - **Child**: siehe Parent
+ - **Mother node**: Die aller erste Node. Sie wird in der Regel im Programm direkt aufgerufen.
+
 ## Einstellungen
 
 *Note*: Nur ein kurzer Überblick!  
@@ -45,3 +52,166 @@ Importieren des "math" modules für sinus, cosinus, pi, etc:
 ```python
 import math
 ```
+
+### SVG Zeugs
+
+---
+
+Deklaration von ganz schön viel zeugs, um mit SVGs zu interagieren.  
+Keine Sorge: das sieht schlimmer aus, als es ist!
+
+Die Datei öffnen, leeren (damit wir keine alten Daten mehr haben) und den xml + svg header reinschreiben:
+
+```python
+## SVG STUFF ##
+# Diese Funktion schreibt den SVG header und den Hintergrund in die SVG Datei
+def init_file(filename):
+  open(filename, 'w').close() # SVG Datei leeren
+  to_file('<?xml version="1.0" encoding="UTF-8"?>') # xml header
+  to_file(f'<svg xmlns="http://www.w3.org/2000/svg" width="{str(svg_width)}" height="{str(svg_height)}">') # svg header
+
+  # Hintergrund
+  draw_rect(width=svg_width, height=svg_height, colour=colour_background)
+  # Kleiner contents marker; macht die svg Datei weningstents ein bisschen übersichtlicher
+  to_file('<!-- vv Contents vv -->\n')
+```
+
+---
+
+Eine super einfache Funktion, um mit nur einem befehl daten in die SVG zu schreiben:
+
+```python
+# Diese Funktion schreibt strings in die SVG Datei
+def to_file(contents: str):
+  try: # Error handling
+    with open(file, 'a') as f: # SVG Datei öffnen
+      f.write(contents + "\n") # Contents in die SVG Datei schreiben
+  except: # (try-except-struktur: wenn die Befehle oben einen Crash produzieren, wird stattdessen der Code hier vv ausgeführt)
+    print("Error writing to svg file!")
+```
+
+Hier benutzen wir eine Try-Except-Struktur, die wir im Unterricht noch nicht hatten.  
+Diese Strukturen können benutzt werden um Crashes vorzubeugen:  
+Sollte eigentlich das Programm, aufgrund des Codes unter ```try:```, Crashen, führt python einfach stattdessen den Code unter ```except``` aus.
+
+Mit ```with open(pfad_zu_der_datei, oeffnungs_modus) as variablenname_fuer_die_datei``` kann man in Python Dateien als Text Dateien öffnen.  
+Wir benutzen: 
+
+```python
+with open(file, 'a') as f:
+```
+
+Also:
+ - Datei: Inhalt der ```file``` variable (also 'image.svg')
+ - Modus: ```a```: append mode; wir werden den Inhalt der Datei nicht ersetzen, sondern anhängen
+ - Name: ```f```: steht für 'file' (dieser Name ist ja aber schon vergeben); ist die Variable, welche die Datei representiert (idk wie ich das erklären soll)
+
+Und dann können wir neue Linien mit ```f.write(some_string)``` hinzufügen:
+
+```python
+f.write(contents + "\n")
+```
+
+*Note*: ```\n``` bedeutet 'newline', also eine neue zeile, denn 'write' fügt nicht automatisch einen Zeilenumbruch hinzu.
+
+Mehr infos zu Python's ```open``` Befehl [hier](https://docs.python.org/3/library/functions.html#open).
+
+---
+
+Wie der Kommentar sagt, diese Funktion fügt eine Linie zu der SVG Datei hinzu:
+
+```python
+# Diese Funktion schreibt (bzw. "malt") eine linie in die SVG Datei
+def draw_line(x1: float, y1: float, x2: float, y2: float, 
+              width: float,
+              colour: str = "#000000",
+              comment: str = None
+              ):
+  line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
+  if not (comment is None): line_str = line_str + f' <!-- {comment} -->'
+  to_file(line_str)
+```
+
+Diese Linie geht von P¹(x1|y1) zu P²(x2|y2). (Diese Punkte werden noch seeeehr wichtig..)
+
+Wenn du mehr über svg Linien wissen willst, kannst du [hier](docs/svg.md#linie) mehr finden.
+
+Die Argumente (x1,x2,y1,y2,width,colour) werden dann mithilfe von [f-strings](https://docs.python.org/3/tutorial/inputoutput.html#tut-f-strings) in den String eingegeben.
+
+Sollte der Kommentar nicht 'None' sein, hängen wir dann noch den Komentar ran. (Komentare in xml werden mit ```<!-- Kommentar Hier -->``` definiert, nicht mit ```# Kommentar hier```, wie in Python)
+
+Danach schreiben wir alles zu der SVG Datei (mithilfe unserer ```to_file``` Funktion von oben).
+
+---
+
+Diese Funktion Sieht zwar unglaublich kompliziert aus, ist aber eigentlich nur die ```draw_line``` Funktion von oben, mit mehr Argumenten
+
+```python
+# Diese Funktion malt ein Rechteck in die SVG Datei
+def draw_rect(width: float, height: float,                               # Nötiges Zeugs
+              colour: str = None,                                        # Farbe
+              x: float = 0, y: float = 0,                                # x, y Position
+              border_colour: str = None, border_width: str = None,       # Rand
+              rotation: str = 0, rotx: float = None, roty: float = None, # Drehen
+              comment: str = None
+              ):
+  rect_parts = [] # Liste, in der alle Teile des Rechtecks gespeichert werden
+  
+  ## Drehungs Header ##
+  if rotx is None: rotx = x # Wenn nicht gesetzt: setze auf x, bzw. y
+  if roty is None: roty = y
+  if rotation != 0: rect_parts.append(f'<g transform="rotate({rotation}, {rotx}, {roty})">\n')
+
+  ## Nötiges ##
+  rect_parts.append(f'<rect')
+  rect_parts.append(f'x="{str(x)}" y="{str(y)}" width="{str(width)}" height="{str(height)}"')
+
+  ## Farbe ##
+  if not (colour is None): rect_parts.append(f'fill="{colour}"')
+  else: rect_parts.append('fill="none"')
+
+  ## Border ##
+  if not (border_colour is None): rect_parts.append(f'stroke="{border_colour}"')
+  if not (border_width is None): rect_parts.append(f'stroke-width="{str(border_width)}"')
+
+  ## Rect Ende ##
+  rect_parts.append('/>')
+
+  ## Kommentar ##
+  if not (comment is None): rect_parts.append(f'<!-- {comment} -->')
+
+  ## Drehung Ende ##
+  if rotation != 0: rect_parts.append('\n</g>')
+
+  # Alle in rect_str zusammenfügen
+  rect_str = ""
+  for x in rect_parts:
+    rect_str = rect_str + " " + x
+
+  # In die SVG Datei schreiben
+  to_file(rect_str)
+```
+
+Da wir mehr Argumente haben (von denen viele optional sind), müssen wir ein wenig kreativ werden:
+
+Anstatt den String für das Rechteck als nur einen String zu speichern, sammeln wir ersmal alle teile in der liste ```rect_parts```, z.b. hier:
+
+```python
+rect_parts.append(f'<rect')
+rect_parts.append(f'x="{str(x)}" y="{str(y)}" width="{str(width)}" height="{str(height)}"')
+```
+
+und setzen den String dann am Ende zusammen:
+
+```python
+rect_str = ""
+for x in rect_parts:
+rect_str = rect_str + " " + x
+
+# In die SVG Datei schreiben
+to_file(rect_str)
+```
+
+Ansonsten benutzt die Funktion einfach nur svg-rect, nicht svg-line. Mehr Infos dazu [hier](docs/svg.md#rechteck).
+
+---
