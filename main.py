@@ -25,10 +25,10 @@ children_count = 2
 ## SVG STUFF ##
 def init_file(filename):
   open(filename, 'w').close()
-  to_file('<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000">')
+  to_file(f'<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="{str(width)}" height="{str(height)}">')
   to_file(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
 
-def toFile(contents: str):
+def to_file(contents: str):
     try: 
       with open(file, 'a') as f: f.write(contents + "\n")
     except: 
