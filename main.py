@@ -6,6 +6,7 @@ file = 'image.svg'
 ## SETTINGS ##
 # General
 mode = "line"
+start = "bottom"
 
 # Board
 svg_height = 900
@@ -92,7 +93,7 @@ def draw_rect(width: float, height: float,                               # Nöti
   if not (comment is None): rect_parts.append(f'<!-- {comment} -->')
 
   ## Drehung Ende ##
-  if rotation != 0: rect_parts.append('\n</g>')
+  if rotation != 0: rect_parts.append('\n </g>')
 
   # Alle in rect_str zusammenfügen
   rect_str = ""
@@ -110,21 +111,27 @@ def node(startx, starty, generation, alpha, parent_length):
   if exponential_dropoff: node_length = parent_length / dropoff
   else: node_length = initial_size / (generation * dropoff + 1)
 
+  alpha_rad = alpha * (math.pi / 180)
+
   # X & Y offset berechnen
-  x_offset = math.sin(alpha * (math.pi / 180)) * node_length
-  y_offset = math.cos(alpha * (math.pi / 180)) * node_length
+  x_offset = math.sin(alpha_rad) * node_length
+  y_offset = math.cos(alpha_rad) * node_length
 
   # Optionale Debug Infos
   if debug: print(f"Gen: {generation} Alpha: {alpha}")
 
   # Berechnen der End-Koordinaten
-  endx = startx + x_offset
-  endy = starty + y_offset
+  if start == "top":
+    endx = startx + x_offset
+    endy = starty + y_offset
+  elif start == "bottom":
+    endx = startx - x_offset
+    endy = starty - y_offset
 
   ## Drawing
   # Also das malen dieser Node in die SVG Datei
   if mode == "line":
-    draw_line(x1=startx, y1=starty, x2=endx, y2=endy, 
+    draw_line(x1=startx, y1=starty, x2=endx, y2=endy,
               width=(node_length * line_width), 
               colour=colour_lines, 
               comment=f"Gen: {generation}")
@@ -151,7 +158,11 @@ def node(startx, starty, generation, alpha, parent_length):
 init_file(file)
 
 ## GENERATING TREE ##
-node((svg_width / 2), 0, 0, 0, initial_size*2) # Aufrufen der Mothernode
+# Aufrufen der Mothernode
+if start == "top":
+  node((svg_width / 2), 0, 0, 0, initial_size*2)
+elif start == "bottom":
+  node((svg_width / 2), svg_height, 0, 0, initial_size*2)
 
 ## CLEANUP ##
 to_file('\n</svg>') # Schreibt den svg footer in die SVG Datei

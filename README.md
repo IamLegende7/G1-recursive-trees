@@ -1,7 +1,6 @@
-# G1 - Rekursive Figuren / Bäume
+# G1 - Rekursive Figuren
 
 ![titel_bild](assets/title_image.png)
-
 
 Dieses Programm erstellt rekursive Figuren und speichert sie in einer SVG datei ab.
 
@@ -43,6 +42,36 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
 | ```children_count```| pos int       | Wie viele children jedes mal generiert werden sollen |
 
 **Tipp**: Spielt einfach mit den Einstellungen rum, um rauszufinden was sie tun.
+
+### Voreinstellungen
+
+---
+
+<details>
+  <summary> Einstellungen für das Titelbild</summary>
+
+  | Einstellung               | Wert |
+  | :-----------------        | :------------- |
+  | **General**                                |
+  | ```mode```                | "line"         |
+  | **Board**                                  |
+  | ```heigth```              | 900            |
+  | ```width```               | 1600           |
+  | **Size**                                   |
+  | ```initial_size```        | 200            |
+  | ```dropoff```             | 1.38           |
+  | ```exponential_dropoff``` | True           |
+  | ```line_width```          | 1/20           |
+  | **Colour**                                 |
+  | ```colour_background```   | None           |
+  | ```colour_lines```        | "#FFFFFF"    |
+  | **Generations & Children**                 |
+  | ```max_generations```     | 10             |
+  | ```children_count```      | 2              |
+
+</details>
+
+---
 
 ## Kurzer Überblick des Programmes
 
