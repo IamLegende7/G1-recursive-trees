@@ -102,7 +102,7 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
   | ```keep_rotation```       | True           |
-  | ```spread```              | 30             |
+  | ```spread```              | 45             |
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
   | ```colour_lines```        | "#000000"    |

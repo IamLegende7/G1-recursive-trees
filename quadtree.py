@@ -20,7 +20,7 @@ line_width = 1/20
 
 # Rotation
 keep_rotation = True
-spread = 30 # Not working with lines; keep 0 for now!
+spread = 45 # Not working with lines; keep 0 for now!
 
 # Colour
 colour_background = "#FFFFFF"
