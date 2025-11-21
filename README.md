@@ -22,24 +22,33 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
  
 *Note*: Einige Erklärungen machen möglicheweise keinen Sinn, wenn ihr das Programm noch nicht versteht
 
-| Einstellung        | mögliche Werte | Erklärung                              |
-| :----------------- | :------------- | :------------------------------------- |
-| **General**                                                                  |
-| ```mode```         | "line", "quad" | Die Formen, die erstellt werden sollen |
-| **Board**                                                                    |
-| ```heigth```       | pos. float     | Die Höhe des SVGs                      |
-| ```width```        | pos. float     | Die Breite des SVGs                    |
-| **Size**                                                                     |
-| ```initial_size``` | pos. float     | die Größe der ersten Generation        |
-| ```dropoff```      | float          | wie schnell die Größe & Linienbreite sich verändert |
-| ```exponential_dropoff``` | bool    | ob die Größe exponentiell kleiner werden soll |
-| ```line_width```   | pos. float     | die Linienbreite, abhänging von der Länge  |
-| **Colour**                                                                   |
-| ```colour_background``` | hex colour str | Die Farbe des Hintergrundes. ```None``` für keine |
-| ```colour_lines``` | hex colour str | Die Farbe der linien. ```None``` für keine |
-| **Generations & Children**                                                   |
-| ```max_generations``` | pos. int    | Die anzahl an generationen, die generiert werden sollen |
-| ```children_count```| pos int       | Wie viele children jedes mal generiert werden sollen |
+| Einstellung               | mögliche Werte | Erklärung                                               |
+| :------------------------ | :------------- | :------------------------------------------------------ |
+| **General**                                                                                          |
+| ```mode```                | "line", "quad" | Die Formen die erstellt werden sollen                   |
+| ```start```               | "top", "bottom", "mid" | Wo die Figur anfangen sollte                    |
+|
+| **Board**                                                                                            |
+| ```heigth```              | pos. float     | Die Höhe des SVGs                                       |
+| ```width```               | pos. float     | Die Breite des SVGs                                     |
+| **Size**                                                                                             |
+|
+| ```initial_size```        | pos. float     | die Größe der ersten Generation                         |
+| ```dropoff```             | float          | wie schnell die Größe & Linienbreite sich verändert     |
+| ```exponential_dropoff``` | bool           | ob die Größe exponentiell kleiner werden soll           |
+| ```line_width```          | pos. float     | die Linienbreite, abhänging von der Länge               |
+|
+| **Rotation**                                                                                         |
+| ```keep_rotation```       | bool           | ob die Rotation vererbt werden soll                     |
+| ```spread```              | -360 zu 360    | die rotation des childs dem parent gegenüber            |
+|
+| **Colour**                                                                                           |
+| ```colour_background```   | hex colour str | Die Farbe des Hintergrundes. ```None``` für keine       |
+| ```colour_lines```        | hex colour str | Die Farbe der linien. ```None``` für keine              |
+|
+| **Generations & Children**                                                                           |
+| ```max_generations```     | pos. int       | Die anzahl an generationen, die generiert werden sollen |
+| ```children_count```      | pos int        | Wie viele children jedes mal generiert werden sollen    |
 
 **Tipp**: Spielt einfach mit den Einstellungen rum, um rauszufinden was sie tun.
 
@@ -54,6 +63,7 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | :-----------------        | :------------- |
   | **General**                                |
   | ```mode```                | "line"         |
+  | ```start```               | "top"          |
   | **Board**                                  |
   | ```heigth```              | 900            |
   | ```width```               | 1600           |
@@ -62,12 +72,43 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | ```dropoff```             | 1.38           |
   | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
+  | **Rotation**                               |
+  | ```keep_rotation```       | True           |
+  | ```spread```              | None           |
   | **Colour**                                 |
   | ```colour_background```   | None           |
   | ```colour_lines```        | "#FFFFFF"    |
   | **Generations & Children**                 |
   | ```max_generations```     | 10             |
   | ```children_count```      | 2              |
+
+</details>
+
+<details>
+  <summary> Einstellungen für die Quadratspirale</summary>
+
+  | Einstellung               | Wert |
+  | :-----------------        | :------------- |
+  | **General**                                |
+  | ```mode```                | "quad"         |
+  | ```start```               | "bottom"       |
+  | **Board**                                  |
+  | ```heigth```              | 900            |
+  | ```width```               | 1600           |
+  | **Size**                                   |
+  | ```initial_size```        | 200            |
+  | ```dropoff```             | 1.38           |
+  | ```exponential_dropoff``` | True           |
+  | ```line_width```          | 1/20           |
+  | **Rotation**                               |
+  | ```keep_rotation```       | True           |
+  | ```spread```              | 30             |
+  | **Colour**                                 |
+  | ```colour_background```   | "#FFFFFF"    |
+  | ```colour_lines```        | "#000000"    |
+  | **Generations & Children**                 |
+  | ```max_generations```     | 10             |
+  | ```children_count```      | 1              |
 
 </details>
 

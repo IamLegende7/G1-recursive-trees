@@ -160,9 +160,9 @@ init_file(file)
 ## GENERATING TREE ##
 # Aufrufen der Mothernode
 if start == "top":
-  node((svg_width / 2), 0, 0, 0, initial_size*2)
+  node((svg_width / 2), 0, 0, 0, initial_size*dropoff)
 elif start == "bottom":
-  node((svg_width / 2), svg_height, 0, 0, initial_size*2)
+  node((svg_width / 2), svg_height, 0, 0, initial_size*dropoff)
 
 ## CLEANUP ##
 to_file('\n</svg>') # Schreibt den svg footer in die SVG Datei
