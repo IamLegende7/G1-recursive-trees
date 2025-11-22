@@ -22,33 +22,37 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
  
 *Note*: Einige Erklärungen machen möglicheweise keinen Sinn, wenn ihr das Programm noch nicht versteht
 
-| Einstellung               | mögliche Werte | Erklärung                                               |
-| :------------------------ | :------------- | :------------------------------------------------------ |
-| **General**                                                                                          |
-| ```mode```                | "line", "quad" | Die Formen die erstellt werden sollen                   |
-| ```start```               | "top", "bottom", "mid" | Wo die Figur anfangen sollte                    |
+| Einstellung               | mögliche Werte   | Erklärung                                               |
+| :------------------------ | :--------------- | :------------------------------------------------------ |
+| **General**                                                                                            |
+| ```mode```                | "line", "quad"   | Die Formen die erstellt werden sollen                   |
+| ```start```               | "top", "bottom", "mid" | Wo die Figur anfangen sollte                      |
 |
-| **Board**                                                                                            |
-| ```heigth```              | pos. float     | Die Höhe des SVGs                                       |
-| ```width```               | pos. float     | Die Breite des SVGs                                     |
-| **Size**                                                                                             |
+| **Board**                                                                                              |
+| ```heigth```              | pos. float       | Die Höhe des SVGs                                       |
+| ```width```               | pos. float       | Die Breite des SVGs                                     |
 |
-| ```initial_size```        | pos. float     | die Größe der ersten Generation                         |
-| ```dropoff```             | float          | wie schnell die Größe & Linienbreite sich verändert     |
-| ```exponential_dropoff``` | bool           | ob die Größe exponentiell kleiner werden soll           |
-| ```line_width```          | pos. float     | die Linienbreite, abhänging von der Länge               |
+| **Size**                                                                                               |
+| ```initial_size```        | pos. float       | die Größe der ersten Generation                         |
+| ```dropoff```             | float            | wie schnell die Größe & Linienbreite sich verändert     |
+| ```exponential_dropoff``` | bool             | ob die Größe exponentiell kleiner werden soll           |
+| ```line_width```          | pos. float       | die Linienbreite, abhänging von der Länge               |
 |
-| **Rotation**                                                                                         |
-| ```keep_rotation```       | bool           | ob die Rotation vererbt werden soll                     |
-| ```spread```              | -360 zu 360    | die rotation des childs dem parent gegenüber            |
+| **Rotation**                                                                                           |
+| ```keep_rotation```       | bool             | ob die Rotation vererbt werden soll                     |
+| ```spread```              | -360 zu 360      | die rotation des childs dem parent gegenüber            |
 |
-| **Colour**                                                                                           |
-| ```colour_background```   | hex colour str | Die Farbe des Hintergrundes. ```None``` für keine       |
-| ```colour_lines```        | hex colour str | Die Farbe der linien. ```None``` für keine              |
+| **Colour**                                                                                             |
+| ```colour_background```   | hex colour str   | Die Farbe des Hintergrundes. ```None``` für keine       |
+| ```colour_lines```        | hex colour str   | Die Farbe der linien. ```None``` für keine              |
 |
-| **Generations & Children**                                                                           |
-| ```max_generations```     | pos. int       | Die anzahl an generationen, die generiert werden sollen |
-| ```children_count```      | pos int        | Wie viele children jedes mal generiert werden sollen    |
+| **Location**              |
+| ```anchor_child```        | "corner", "edge" | An welcher Stelle des Childs C1-4 liegt                 |
+| ```anchor_parent```       | "corner", "edge" | An welcher Stelle des Parents C1-4 liegt                |
+|
+| **Generations & Children**                                                                             |
+| ```max_generations```     | pos. int         | Die anzahl an generationen, die generiert werden sollen |
+| ```children_count```      | pos int          | Wie viele children jedes mal generiert werden sollen    |
 
 **Tipp**: Spielt einfach mit den Einstellungen rum, um rauszufinden was sie tun.
 
@@ -59,7 +63,9 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
 <details>
   <summary> Einstellungen für das Titelbild</summary>
 
-  | Einstellung               | Wert |
+  ![beispiel_0](beispiele/0.titel_bild.svg)
+
+  | Einstellung               | Wert           |
   | :-----------------        | :------------- |
   | **General**                                |
   | ```mode```                | "line"         |
@@ -78,6 +84,9 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | **Colour**                                 |
   | ```colour_background```   | None           |
   | ```colour_lines```        | "#FFFFFF"    |
+  | **Location**                               |
+  | ```anchor_child```        | "corner"       |
+  | ```anchor_parent```       | "corner"       |
   | **Generations & Children**                 |
   | ```max_generations```     | 10             |
   | ```children_count```      | 2              |
@@ -85,9 +94,77 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
 </details>
 
 <details>
+  <summary> Einstellungen für den Quadratbaum</summary>
+
+  ![beispiel_1](beispiele/1.quadratbaum.svg)
+
+  | Einstellung               | Wert           |
+  | :-----------------        | :------------- |
+  | **General**                                |
+  | ```mode```                | "quad"         |
+  | ```start```               | "bottom"       |
+  | **Board**                                  |
+  | ```heigth```              | 900            |
+  | ```width```               | 1600           |
+  | **Size**                                   |
+  | ```initial_size```        | 200            |
+  | ```dropoff```             | 2              |
+  | ```exponential_dropoff``` | True           |
+  | ```line_width```          | 1/20           |
+  | **Rotation**                               |
+  | ```keep_rotation```       | True           |
+  | ```spread```              | 45             |
+  | **Colour**                                 |
+  | ```colour_background```   | "#FFFFFF"    |
+  | ```colour_lines```        | "#000000"    |
+  | **Location**                               |
+  | ```anchor_child```        | "edge"         |
+  | ```anchor_parent```       | "corner"       |
+  | **Generations & Children**                 |
+  | ```max_generations```     | 5              |
+  | ```children_count```      | 2              |
+
+</details>
+
+<details>
+  <summary> Einstellungen für die Quadratpflanze</summary>
+
+  ![beispiel_1](beispiele/2.quadratpflanze.svg)
+
+  | Einstellung               | Wert           |
+  | :-----------------        | :------------- |
+  | **General**                                |
+  | ```mode```                | "quad"         |
+  | ```start```               | "bottom"       |
+  | **Board**                                  |
+  | ```heigth```              | 900            |
+  | ```width```               | 1600           |
+  | **Size**                                   |
+  | ```initial_size```        | 300            |
+  | ```dropoff```             | 3              |
+  | ```exponential_dropoff``` | True           |
+  | ```line_width```          | 1/20           |
+  | **Rotation**                               |
+  | ```keep_rotation```       | True           |
+  | ```spread```              | 90             |
+  | **Colour**                                 |
+  | ```colour_background```   | "#FFFFFF"    |
+  | ```colour_lines```        | "#000000"    |
+  | **Location**                               |
+  | ```anchor_child```        | "edge"         |
+  | ```anchor_parent```       | "edge"         |
+  | **Generations & Children**                 |
+  | ```max_generations```     | 4              |
+  | ```children_count```      | 3              |
+
+</details>
+
+<details>
   <summary> Einstellungen für die Quadratspirale</summary>
 
-  | Einstellung               | Wert |
+  ![beispiel_3](beispiele/3.quadratspirale.svg)
+
+  | Einstellung               | Wert           |
   | :-----------------        | :------------- |
   | **General**                                |
   | ```mode```                | "quad"         |
@@ -106,6 +183,9 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
   | ```colour_lines```        | "#000000"    |
+  | **Location**                               |
+  | ```anchor_child```        | "corner"       |
+  | ```anchor_parent```       | "corner"       |
   | **Generations & Children**                 |
   | ```max_generations```     | 10             |
   | ```children_count```      | 1              |
