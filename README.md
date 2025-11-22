@@ -27,29 +27,29 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
 | **General**                                                                                            |
 | ```mode```                | "line", "quad"   | Die Formen die erstellt werden sollen                   |
 | ```start```               | "top", "bottom", "mid" | Wo die Figur anfangen sollte                      |
-|
+|                                                                                                        |
 | **Board**                                                                                              |
 | ```heigth```              | pos. float       | Die Höhe des SVGs                                       |
 | ```width```               | pos. float       | Die Breite des SVGs                                     |
-|
+|                                                                                                        |
 | **Size**                                                                                               |
 | ```initial_size```        | pos. float       | die Größe der ersten Generation                         |
 | ```dropoff```             | float            | wie schnell die Größe & Linienbreite sich verändert     |
 | ```exponential_dropoff``` | bool             | ob die Größe exponentiell kleiner werden soll           |
 | ```line_width```          | pos. float       | die Linienbreite, abhänging von der Länge               |
-|
+|                                                                                                        |
 | **Rotation**                                                                                           |
 | ```keep_rotation```       | bool             | ob die Rotation vererbt werden soll                     |
 | ```spread```              | -360 zu 360      | die rotation des childs dem parent gegenüber            |
-|
+|                                                                                                        |
 | **Colour**                                                                                             |
 | ```colour_background```   | hex colour str   | Die Farbe des Hintergrundes. ```None``` für keine       |
 | ```colour_lines```        | hex colour str   | Die Farbe der linien. ```None``` für keine              |
-|
-| **Location**              |
+|                                                                                                        |
+| **Location**                                                                                           |
 | ```anchor_child```        | "corner", "edge" | An welcher Stelle des Childs C1-4 liegt                 |
 | ```anchor_parent```       | "corner", "edge" | An welcher Stelle des Parents C1-4 liegt                |
-|
+|                                                                                                        |
 | **Generations & Children**                                                                             |
 | ```max_generations```     | pos. int         | Die anzahl an generationen, die generiert werden sollen |
 | ```children_count```      | pos int          | Wie viele children jedes mal generiert werden sollen    |
