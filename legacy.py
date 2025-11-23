@@ -20,7 +20,7 @@ width_factor = 1/20
 
 # Generations & Children
 max_generations = 10
-children_count = 2
+children_count = 3
 
 ## SVG STUFF ##
 def init_file(filename):
