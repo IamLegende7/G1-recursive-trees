@@ -319,7 +319,7 @@ f.write(contents + "\n")
 
 Mehr infos zu Python's ```open``` Befehl [hier](https://docs.python.org/3/library/functions.html#open).
 
-Ein anfängerfreundlicher (deutscher) Artikel zu Python & Dateioperationen: [hier](https://de.python-3.com/?p=2837) (<-- **KEINE OFFIZIELLEN PYTHON DOCS!**)
+Ein anfängerfreundlicher (deutscher) Artikel zu Python & Dateioperationen: [hier](https://de.python-3.com/?p=3083) (<-- **KEINE OFFIZIELLEN PYTHON DOCS!**)
 
 ---
 
