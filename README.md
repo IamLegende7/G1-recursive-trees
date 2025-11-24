@@ -132,7 +132,7 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
 <details>
   <summary> Einstellungen für die Quadratpflanze</summary>
 
-  ![beispiel_1](beispiele/2.quadratpflanze.svg)
+  ![beispiel_2](beispiele/2.quadratpflanze.svg)
 
   | Einstellung               | Wert           |
   | :-----------------        | :------------- |
@@ -228,6 +228,15 @@ Eine kleine Liste an wichtigen Vokabeln: (Ja, ich weiß; das ist alles ein schre
   | **Generations & Children**                 |
   | ```max_generations```     | 14             |
   | ```children_count```      | 1              |
+
+</details>
+
+<details>
+  <summary> Einstellungen für das Sierpinski-Dreieck</summary>
+
+  ![beispiel_6](beispiele/6.sierpinski.svg)
+
+  **NICHT MÖGLICH MIT [```main.py```](main.py); BENUTZE [```triangle.py```](triangle.py)**
 
 </details>
 
