@@ -31,8 +31,8 @@ def to_file(contents: str):
     except: 
       print("Error writing to svg file!")
 
-def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: str = "#000000"):
-    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
+def draw_line(x1: float, y1: float, x2: float, y2: float, width: float):
+    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="#000000" stroke-width="{str(width)}" />'
     to_file(line_str)
 
 ## NODES ##
@@ -53,7 +53,7 @@ def node(startx, starty, generation, alpha, length):
   endy = starty + y_offset
 
   ## Drawing
-  draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)), colour="#000000")
+  draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)))
 
   if generation < max_generations:
     ## Generate Children
