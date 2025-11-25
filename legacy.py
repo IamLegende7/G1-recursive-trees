@@ -34,8 +34,8 @@ def to_file(contents: str):
     except: 
       print("Error writing to svg file!")
 
-def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: str = "#000000"):
-    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
+def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, color: str = "#000000"):
+    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{color}" stroke-width="{str(width)}" />'
     to_file(line_str)
 
 ## NODES ##
