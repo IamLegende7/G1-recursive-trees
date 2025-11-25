@@ -5,23 +5,21 @@ file = 'image.svg'
 
 ## SETTINGS ##
 # General
-mode = "quad"
-submode = "pythagoras"
-start = "bottom"
+mode = "line"
+submode = None
+start = "top"
 
 # Board
-svg_height = 900/2
-svg_width = 1600/2
+svg_height = 900
+svg_width = 1600
 
 # Size
-initial_size = 100
-dropoff = 1.2
-exponential_dropoff = True
+initial_size = 200
+dropoff = 1.38
 line_width = 1/20
 
 # Rotation
-keep_rotation = True
-spread = 30 # Not working with lines; keep 0 for now!
+spread = None # Not working with lines; keep None for now!
 
 # Colour
 colour_background = "#FFFFFF"
@@ -32,8 +30,8 @@ anchor_child = "corner"
 anchor_parent = "corner"
 
 # Generations & Children
-max_generations = 14
-children_count = 1
+max_generations = 10
+children_count = 2
 initial_children_count = None
 
 ## SVG STUFF ##
@@ -62,12 +60,12 @@ def draw_line(x1: float, y1: float, x2: float, y2: float,
               width: float,
               colour: str = "#000000",
               comment: str = None,
-              addtional_option: str = None
+              additional_option: str = None
               ):
   # Grund-String
   line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}"'
   # Extra optionen
-  if not (addtional_option is None): line_str = line_str + " " + addtional_option
+  if not (additional_option is None): line_str = line_str + " " + additional_option
 
   # Ende line funktion
   line_str = line_str + ' />'
@@ -145,26 +143,31 @@ def node(origin_x, origin_y, generation, alpha, node_length):
   ## QUAD ##
   elif mode == "quad":
     to_file(f'<!-- Gen {generation} Quad -->')
+
     draw_line(x1=P1_x, y1=P1_y, x2=P2_x, y2=P2_y, 
           width=(node_length * line_width), 
           colour=colour_lines if not debug else "#FF0000", # red
           comment=f"q1; Gen{generation}",
-          addtional_option='stroke-linecap="square"')
+          additional_option='stroke-linecap="square"')
+
     draw_line(x1=P2_x, y1=P2_y, x2=P3_x, y2=P3_y, 
           width=(node_length * line_width), 
           colour=colour_lines if not debug else "#00FF00", # green
           comment=f"q2; Gen{generation}",
-          addtional_option='stroke-linecap="square"')
+          additional_option='stroke-linecap="square"')
+
     draw_line(x1=P3_x, y1=P3_y, x2=P4_x, y2=P4_y, 
           width=(node_length * line_width), 
           colour=colour_lines if not debug else "#0000FF", # blue
           comment=f"q3; Gen{generation}",
-          addtional_option='stroke-linecap="square"')
+          additional_option='stroke-linecap="square"')
+
     draw_line(x1=P4_x, y1=P4_y, x2=P1_x, y2=P1_y, 
           width=(node_length * line_width), 
           colour=colour_lines if not debug else "#FFFF00", # yellow
           comment=f"q4; Gen{generation}",
-          addtional_option='stroke-linecap="square"')
+          additional_option='stroke-linecap="square"')
+
     to_file(f'<!-- Gen {generation} Quad End -->')
 
 
@@ -176,8 +179,7 @@ def node(origin_x, origin_y, generation, alpha, node_length):
     else: child_spacing = spread
 
     # Länge der Child nodes Berechnen
-    if exponential_dropoff: child1_length = node_length / dropoff
-    else: child1_length = initial_size / ((generation+1) * dropoff + 1)
+    child1_length = node_length / dropoff
 
     ## Aussuchen der child spawns ##
     if anchor_parent == "corner":

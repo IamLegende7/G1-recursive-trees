@@ -4,9 +4,6 @@ debug = True
 file = 'image.svg'
 
 ## SETTINGS ##
-# Mode
-mode = "line"
-
 # Board
 height = 900
 width = 1600

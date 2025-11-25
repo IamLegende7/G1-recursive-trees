@@ -38,11 +38,9 @@ Eine kleine Liste an wichtigen Vokabeln:
 | **Size**                                                                                               |
 | ```initial_size```        | pos. float       | die Größe der ersten Generation                         |
 | ```dropoff```             | float            | wie schnell die Größe & Linienbreite sich verändert     |
-| ```exponential_dropoff``` | bool             | ob die Größe exponentiell kleiner werden soll           |
 | ```line_width```          | pos. float       | die Linienbreite, abhänging von der Länge               |
 |                                                                                                        |
 | **Rotation**                                                                                           |
-| ```keep_rotation```       | bool             | ob die Rotation vererbt werden soll                     |
 | ```spread```              | -360 zu 360      | die rotation des childs dem parent gegenüber            |
 |                                                                                                        |
 | **Colour**                                                                                             |
@@ -80,10 +78,8 @@ Eine kleine Liste an wichtigen Vokabeln:
   | **Size**                                   |
   | ```initial_size```        | 200            |
   | ```dropoff```             | 1.38           |
-  | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
-  | ```keep_rotation```       | True           |
   | ```spread```              | None           |
   | **Colour**                                 |
   | ```colour_background```   | None           |
@@ -114,10 +110,8 @@ Eine kleine Liste an wichtigen Vokabeln:
   | **Size**                                   |
   | ```initial_size```        | 200            |
   | ```dropoff```             | 2              |
-  | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
-  | ```keep_rotation```       | True           |
   | ```spread```              | 45             |
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
@@ -148,10 +142,8 @@ Eine kleine Liste an wichtigen Vokabeln:
   | **Size**                                   |
   | ```initial_size```        | 300            |
   | ```dropoff```             | 3              |
-  | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
-  | ```keep_rotation```       | True           |
   | ```spread```              | 90             |
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
@@ -182,10 +174,8 @@ Eine kleine Liste an wichtigen Vokabeln:
   | **Size**                                   |
   | ```initial_size```        | 200            |
   | ```dropoff```             | 1.38           |
-  | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
-  | ```keep_rotation```       | True           |
   | ```spread```              | 45             |
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
@@ -216,10 +206,8 @@ Eine kleine Liste an wichtigen Vokabeln:
   | **Size**                                   |
   | ```initial_size```        | 200            |
   | ```dropoff```             | 1.2            |
-  | ```exponential_dropoff``` | True           |
   | ```line_width```          | 1/20           |
   | **Rotation**                               |
-  | ```keep_rotation```       | True           |
   | ```spread```              | 30             |
   | **Colour**                                 |
   | ```colour_background```   | "#FFFFFF"    |
@@ -331,12 +319,12 @@ def draw_line(x1: float, y1: float, x2: float, y2: float,
               width: float,
               colour: str = "#000000",
               comment: str = None,
-              addtional_option: str = None
+              additional_option: str = None
               ):
   # Grund-String
   line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}"'
   # Extra optionen
-  if not (addtional_option is None): line_str = line_str + " " + addtional_option
+  if not (additional_option is None): line_str = line_str + " " + additional_option
 
   # Ende line funktion
   line_str = line_str + ' />'
@@ -534,25 +522,25 @@ elif mode == "quad":
         width=(node_length * line_width), 
         colour=colour_lines
         comment=f"q1; Gen{generation}",
-        addtional_option='stroke-linecap="square"')
+        additional_option='stroke-linecap="square"')
 
   draw_line(x1=P2_x, y1=P2_y, x2=P3_x, y2=P3_y, 
         width=(node_length * line_width), 
         colour=colour_lines
         comment=f"q2; Gen{generation}",
-        addtional_option='stroke-linecap="square"')
+        additional_option='stroke-linecap="square"')
 
   draw_line(x1=P3_x, y1=P3_y, x2=P4_x, y2=P4_y, 
         width=(node_length * line_width), 
         colour=colour_lines
         comment=f"q3; Gen{generation}",
-        addtional_option='stroke-linecap="square"')
+        additional_option='stroke-linecap="square"')
 
   draw_line(x1=P4_x, y1=P4_y, x2=P1_x, y2=P1_y, 
         width=(node_length * line_width), 
         colour=colour_lines
         comment=f"q4; Gen{generation}",
-        addtional_option='stroke-linecap="square"')
+        additional_option='stroke-linecap="square"')
 
   to_file(f'<!-- Gen {generation} Quad End -->')
 ```
@@ -571,7 +559,7 @@ Hier eine kleine Übersicht über linecaps:
 Um die Ecken des Quadrats voll auszufüllen, müssen wir nur ```square``` Linecaps benutzen:
 
 ```python
-addtional_option='stroke-linecap="square"'
+additional_option='stroke-linecap="square"'
 ```
 
 ---
@@ -595,8 +583,7 @@ else: child_spacing = spread
 Dann die Länge der Children:
 
 ```python
-if exponential_dropoff: child1_length = node_length / dropoff
-else: child1_length = initial_size / ((generation+1) * dropoff + 1)
+child1_length = node_length / dropoff
 ```
 
 Nun müssen wir die Child Spawns aussuchen: (Abhänging von ```anchor_parent```)
@@ -757,8 +744,6 @@ Extra Infos: (bin zu faul das genauer zu erklären) [TODO: weiter ausführen]
 if submode == "pythagoras":
   child2_length = math.sin(child_spacing * (math.pi / 180)) * node_length
   beta = 180 - child_spacing - (math.asin(child1_length / node_length) * (180 / math.pi))     # 180° - child_spacing - gamma = beta, denn alpha + beta + gamma = 180°
-
-  if debug: print(f'Alpha: {round(alpha)} Beta: {round(beta)} Gamma: {round(math.asin(child1_length / node_length) * (180 / math.pi))} Spacing: {round(child_spacing)}')
 
   child_a = math.cos((r1 + alpha + child_spacing) * (math.pi / 180)) * child1_length
   child_b = math.sin((r1 + alpha + child_spacing) * (math.pi / 180)) * child1_length
