@@ -2,7 +2,6 @@ import math
 
 file = 'image.svg'
 
-
 ## SETTINGS ##
 # Board
 height = 900
@@ -39,16 +38,7 @@ def node(startx, starty, generation, alpha, length):
   ## Drawing
   draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(new_length*0.05))
 
-
   dist = 180 / children_count
-
-  if debug: print(f"Gen: {generation} Dist: {dist}")
-
-  endx = startx + x_offset
-  endy = starty + y_offset
-
-  ## Drawing
-  draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)))
 
   if generation < max_generations:
     ## Generate Children
