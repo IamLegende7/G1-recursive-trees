@@ -1,7 +1,7 @@
 import math
 
-debug = True
 file = 'image.svg'
+
 
 ## SETTINGS ##
 # Board
@@ -11,49 +11,41 @@ width = 1600
 # Size
 initial_size = 200
 dropoff = 1.38
-line_width = 20
-exponential_dropoff = True
-width_factor = 1/20
 
 # Generations & Children
-max_generations = 10
-children_count = 3
+max_generations = 7
+children_count = 2
 
 ## SVG STUFF ##
-def init_file(filename):
-  open(filename, 'w').close()
-  to_file(f'<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="{str(width)}" height="{str(height)}">')
-  to_file(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
-
 def to_file(contents: str):
     try: 
       with open(file, 'a') as f: f.write(contents + "\n")
     except: 
       print("Error writing to svg file!")
 
-def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, colour: str = "#000000"):
-    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{colour}" stroke-width="{str(width)}" />'
+def init_file(filename):
+  open(filename, 'w').close()
+  to_file(f'<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="{str(width)}" height="{str(height)}">')
+  to_file(f'<rect width="{str(width)}" height="{str(height)}" fill="#FFFFFF" />')
+
+def draw_line(x1: float, y1: float, x2: float, y2: float, width: float, color: str = "#000000"):
+    line_str = f'<line x1="{str(x1)}" y1="{str(y1)}" x2="{str(x2)}" y2="{str(y2)}" stroke="{color}" stroke-width="{str(width)}" />'
     to_file(line_str)
 
 ## NODES ##
 def node(startx, starty, generation, alpha, length):
   
-  if exponential_dropoff: new_length = length / dropoff
-  else: new_length = initial_size / (generation * dropoff + 1)
+  new_length = length / dropoff
   
   ## Mathe
-  x_offset = math.sin(alpha * (math.pi / 180)) * new_length
-  y_offset = math.cos(alpha * (math.pi / 180)) * new_length
-
-  dist = 180 / children_count
-
-  if debug: print(f"Gen: {generation} Dist: {dist}")
-
-  endx = startx + x_offset
-  endy = starty + y_offset
+  endx = startx + math.sin(alpha * (math.pi / 180)) * new_length
+  endy = starty + math.cos(alpha * (math.pi / 180)) * new_length
 
   ## Drawing
-  draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(line_width / (generation + 1)), colour="#000000")
+  draw_line(x1=startx, y1=starty, x2=endx, y2=endy, width=(new_length*0.05), color="#000000")
+
+
+  dist = 180 / children_count
 
   if generation < max_generations:
     ## Generate Children
